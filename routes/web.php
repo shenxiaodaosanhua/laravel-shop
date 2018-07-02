@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'email_verified'], function() {
 
+        Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index');
+
     });
 
 });

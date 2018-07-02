@@ -38,8 +38,13 @@
                                     {{ csrf_field() }}
                                 </form>
                             </li>
+                            <li>
+                                <a href="{{ route('user_addresses.index') }}">收货地址</a>
+                            </li>
                         </ul>
                     </li>
+
+
             @endguest
             <!-- 登录注册链接结束 -->
             </ul>
