@@ -29,6 +29,9 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>
+                                <a href="{{ route('user_addresses.index') }}">收货地址</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -37,9 +40,6 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </li>
-                            <li>
-                                <a href="{{ route('user_addresses.index') }}">收货地址</a>
                             </li>
                         </ul>
                     </li>
