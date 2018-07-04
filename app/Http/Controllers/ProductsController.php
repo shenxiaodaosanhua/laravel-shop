@@ -6,8 +6,17 @@ use App\Exceptions\InvalidRequestException;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+/**
+ * Class ProductsController
+ * @package App\Http\Controllers
+ */
 class ProductsController extends Controller
 {
+    /**
+     * 商品列表
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         // 创建一个查询构造器
@@ -51,6 +60,13 @@ class ProductsController extends Controller
         ]);
     }
 
+    /**
+     * 商品详情
+     * @param Product $product
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws InvalidRequestException
+     */
     public function show(Product $product, Request $request)
     {
         // 判断商品是否已经上架，如果没有上架则抛出异常。
@@ -72,6 +88,12 @@ class ProductsController extends Controller
         ]);
     }
 
+    /**
+     * 收藏商品
+     * @param Product $product
+     * @param Request $request
+     * @return array
+     */
     public function favor(Product $product, Request $request)
     {
         $user = $request->user();
@@ -84,6 +106,12 @@ class ProductsController extends Controller
         return [];
     }
 
+    /**
+     * 取消收藏
+     * @param Product $product
+     * @param Request $request
+     * @return array
+     */
     public function disfavor(Product $product, Request $request)
     {
         $user = $request->user();
@@ -92,6 +120,11 @@ class ProductsController extends Controller
         return [];
     }
 
+    /**
+     * 我的收藏
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function favorites(Request $request)
     {
         $products = $request->user()->favoriteProducts()->paginate(16);
