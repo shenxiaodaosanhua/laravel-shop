@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
+    /**
+     * @param OrderRequest $request
+     * @return mixed
+     */
     public function store(OrderRequest $request)
     {
         $user  = $request->user();
@@ -73,6 +77,10 @@ class OrdersController extends Controller
         return $order;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $orders = Order::query()
@@ -83,5 +91,17 @@ class OrdersController extends Controller
             ->paginate();
 
         return view('orders.index', ['orders' => $orders]);
+    }
+
+    /**
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Order $order, Request $request)
+    {
+        $this->authorize('own', $order);
+
+        return view('orders.show', ['order' => $order->load(['items.productSku', 'items.product'])]);
     }
 }
