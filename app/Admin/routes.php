@@ -20,6 +20,6 @@ Route::group([
     $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
     $router->post('orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
 
-    $router->get('coupon_codes', 'CouponCodesController@index');
+    $router->resource('coupon_codes', 'CouponCodesController');
 
 });
