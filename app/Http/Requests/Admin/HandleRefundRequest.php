@@ -7,6 +7,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class HandleRefundRequest extends Request
 {
+    /**
+     * @return array
+     */
     public function rules()
     {
         return [
