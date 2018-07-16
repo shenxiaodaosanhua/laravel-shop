@@ -160,6 +160,9 @@ class Order extends Model
         return false;
     }
 
+    /**
+     * @return string
+     */
     public static function getAvailableRefundNo()
     {
         do {
@@ -169,5 +172,13 @@ class Order extends Model
         } while (self::query()->where('refund_no', $no)->exists());
 
         return $no;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function couponCode()
+    {
+        return $this->belongsTo(CouponCode::class);
     }
 }
